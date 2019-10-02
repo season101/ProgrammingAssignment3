@@ -1,21 +1,23 @@
 # ###################### Introduction #############################
 #                                                                 #
-#    #Name: Sijan Malla              Date Assigned:?????????????  #
+#    #Name: Sijan Malla              Date Assigned:Sept. 24,2019  #
 #    #                                                            #
-#    #Course: 2000-44306        Date Due: ??:?????, ???????????   #
+#    #Course: 2000-44306             Date Due : Oct. 1, 2019      #
 #    #                                                            #
 #    #File name: Programming Assignment 2                         #
 #    #                                                            #
-#    #Program Description: ????????????????????????????????       #
-#                          ?????????????????????????????????????  #
+#    #Program Description: It acts as a webiste for a amusement   #
+#                          park for selling the tickets.          #
 #                                                                 #
 ##################### Program Begins ##############################
 
 #Title of Program
 print()
+
 print(" "*2+"=-"*32)
 print("{0:^64s}".format("Welcome! please complete your ticket order below!"))
 print(" "*2+"=-"*32)
+
 print()
 print()
 
@@ -34,9 +36,11 @@ childPriceDay1=0
 childPriceDay2=0
 childPriceDay3=0
 
+userConfirmation = "Y"
+
 
 #Creating Loop For Ticket Confirmation:
-userConfirmation = "Y"
+
 while userConfirmation == "Y":
 
     #Display for Theme Park Options
@@ -58,15 +62,16 @@ while userConfirmation == "Y":
     print()
     print()
 
-    choice1ForThemePark = int(input("Choose a theme park (1-3): "))
+    choice1ForThemePark = input("Choose a theme park (1-3): ")
     #Input Validation for choice1ForThemePark
-    while choice1ForThemePark>3 or choice1ForThemePark<1:
-        print("!!!Input Error!!!")
-        choice1ForThemePark = int(input("Choose a theme park (1-3): "))
+    while not(choice1ForThemePark.isdigit()) or int(choice1ForThemePark)>3 or int(choice1ForThemePark)<1:
+        choice1ForThemePark = input("Error! You must enter between (1-3): ")
 
     print()
+    choice1ForThemePark = int(choice1ForThemePark)
 
     # Assingning theme park name to display title + Ticket price in Ticket Options
+
     while choice1ForThemePark == 1:
 
         themeParkName = "UNIVERSAL STUDIOS"
@@ -88,7 +93,6 @@ while userConfirmation == "Y":
         childPriceDay2= 187.00
         childPriceDay3= 271.00
         choice1ForThemePark = 0                #For Reset Purpose
-
 
     while choice1ForThemePark == 3:
 
@@ -124,11 +128,14 @@ while userConfirmation == "Y":
     print()
     print()
 
-    choice2ForNumberOfDays = int(input("Choose number of days (1-3): "))
-    #input validation for choice2ForNumberOfDays
-    while choice2ForNumberOfDays>3 or choice2ForNumberOfDays<1:
-            print("!!!Input Error!!!")
-            choice2ForNumberOfDays = int(input("Choose number of days (1-3): "))
+
+    choice2ForNumberOfDays = input("Choose number of days (1-3): ")
+
+    #Input Validation for choice1ForThemePark
+    while not(choice2ForNumberOfDays.isdigit()) or int(choice2ForNumberOfDays)>3 or int(choice2ForNumberOfDays)<1:
+        choice2ForNumberOfDays = input("Error! You must enter between (1-3): ")
+
+    choice2ForNumberOfDays = int(choice2ForNumberOfDays)
 
     #Assigning prices for calculation
     priceForAdultTickets = 0
@@ -179,12 +186,17 @@ while userConfirmation == "Y":
     #Taking userconfirmation for Orders
     print()
     print()
-    userConfirmation = input("Do you need to modify your order ? (Y/N): ").capitalize()
+
+    userConfirmation = input("Do you need to modify your order ? (y/n): ").capitalize()
+
+    while not(userConfirmation.isalpha()) or (userConfirmation != "Y" and userConfirmation!="N"):
+        userConfirmation = input("Error! You must enter y or n: ").capitalize()
+
     print()
 
 #calculations for reciept
 subtotal = (numberOfAdultTickets*priceForAdultTickets) + (numberOfChildTickets * priceForChildTickets)
-tax = 0.11 * subtotal
+tax = 0.11 * subtotal      # tax is 11%
 total = subtotal + tax
 
 #Display for Checkout
